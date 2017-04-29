@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<stdlib.h>
+static char stack[1000];static char memory[10000];static int sp=-4;void push(int x){    sp+=4;    int *p=(int*)(stack+sp);    *p=x;}void load(int addr){    int *xp=(int*)(memory+addr);    push(*xp);}void store(int addr){    int *p=(int*)(stack+sp);    int *xp=(int*)(memory+addr);    *xp=*p;    sp-=4;}void add(){    int sum;    sum=*(int*)(stack+sp)+*(int*)(stack+sp-4);    sp-=8;    push(sum);}void sub(){    int dif;    dif=*(int*)(stack+sp-4)-*(int*)(stack+sp);    sp-=8;    push(dif);}void mul(){    int pro;    pro=*(int*)(stack+sp-4) * *(int*)(stack+sp);    sp-=8;    push(pro);}void divide(){    int quo;    quo=*(int*)(stack+sp-4) / *(int*)(stack+sp);    sp-=8;    push(quo);}void and(){    int x=*(int*)(stack+sp-4) && *(int*)(stack+sp);    sp-=8;    push(x);}void or(){    int x=*(int*)(stack+sp-4) || *(int*)(stack+sp);    sp-=8;    push(x);}void printi(){    int x=*(int*)(stack+sp);    sp-=4;    printf("%d",x);    putchar(10);}void printb(){    int x=*(int*)(stack+sp);    sp-=4;    if(x)        printf("true");    else        printf("false");    putchar(10);}int main(int argc,char *argv[]){
+	push(20);
+	store(0);
+	load(0);
+	load(0);
+	add();
+	push(10);
+	add();
+	store(0);
+	push(88);
+	printi();
+	push(1);
+	printb();
+	load(0);
+	printi();
+	push(100);
+	store(8);
+	push(10);
+	store(12);
+	load(8);
+	load(12);
+	sub();
+	store(8);
+	load(8);
+	load(12);
+	divide();
+	store(12);
+	load(12);
+	load(8);
+	mul();
+	store(12);
+	load(12);
+	printi();
+	push(1);
+	store(16);
+	push(0);
+	store(20);
+	load(16);
+	load(20);
+	and();
+	printb();
+	load(16);
+	load(20);
+	or();
+	store(24);
+	load(24);
+	printb();
+}

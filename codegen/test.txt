@@ -1,0 +1,30 @@
+{
+  int a;
+  bool b;
+  int c;
+  int d;
+  bool x;
+  bool y;
+  bool z;
+  
+  a=20;
+  a=a+a+10;
+  printi (88);
+  printb(true);
+  
+  printi(a);
+  
+  c=100;
+  d=10;
+  c=c-d;
+  d=c/d;
+  d=d*c;
+  printi(d);
+  
+  x=true;
+  y=false;
+  printb(x&&y);
+  z=x||y;
+  printb(z);
+  
+}
